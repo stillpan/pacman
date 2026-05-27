@@ -1,0 +1,65 @@
+README Pacman
+
+OVERVIEW:
+This program creates the Pacman game. The PaneOrganizer class is the top level graphics
+class and the Game class is the top level logic class. The App class models the PaneOrganizer class
+and sets up the scene, which is added to the stage. An instance of the game class is called in the
+PaneOrganizer class to instantiate the game. The game class handles any user interactions
+and takes care of the overall logic of the game. There is a Pacman class that models and creates
+the Pacman in the game, and also contains methods that allows pacman to move. It also contains
+methods that relates to Pacman in the game. There is a Collidable inheritance class,
+which is implemented by the Ghost, Energizer, and Dot class. Each of those classes models
+and creates the respective collidables. Instances of these collidable classes are created
+in the game class to create and model the four ghosts, and the energizers and dots found on the map.
+The board is a 2D array that was created in the Game class by referencing the CS15SupportMap
+and by using the Square class. The Square class is a wrapper class that created the squares
+graphically and contained the list of the collidables on the square at any given moment.
+Mode and Direction are enums that included the possible modes and possible directions.
+
+DESIGN CHOICES:
+The game utilizes several classes that all work together in different ways to make the
+game perform the way it should. I used association to pass objects throughout the different
+classes to ensure that they all knew about the same one. For examples, I would pass the
+board from the game into the ghost class by passing it through a method called on
+the ghosts in the game class. I also used getters and setters in the classes to
+get the necessary variables or objects. For example, all of the collidables classes
+and the pacman class had getRow and getCol methods that would return the row or
+column that the collidable or pacman was on. Another example was the collidables
+list that was created in the square class. I had a getList method that would return
+the list when it was called on a square.
+
+To create the map, I ran a double layer for loop to reference the CS15 support map that was
+given to us. The double layer for loops models the rows and columns of the board, and
+would create the collidables and pacman depending on where they are supposed to be
+located on the board. I had to create the ghosts separately due to how the for loop
+iterates. I added all the collidables on a square to the collidable list stored in the
+square.
+
+I would change the ghostModes based on several indicators. One was collision, where
+if pacman ate the energizer, the game mode would change to frightened. Another was
+the use of counters. I created a counter that would tell me when to set the mode
+to chase or scatter, and another to tell me when to set the mode to frightened.
+
+I wrote the breath first search algorithm in the ghost class since the ghosts
+were the ones that needed the algorithm. The algorithm would be used for chase
+and scatter modes but not for the frightened mode. For the frightened mode I had
+a method that would return a random valid direction.
+
+To see if the game was over I had a counter to see whether pacman had eaten all
+the dots and energizers.
+
+Bells and whistles:
+- You can press D to change the speed of the game. Pacman and the ghosts will move faster.
+Pressing D again will return the speed to the original speed.
+- There are three ghost mode tokens at the start of the game. These tokens allow you to change the
+ghost mode by pressing C for chase, S for scatter, and F for frightened. However, if you run out of
+tokens, then a label will appear to tell you that you have no more tokens to use.
+
+KNOWN BUGS: no known bugs
+
+How many hours did it take you to do this assignment?
+70 hours
+
+
+
+
